@@ -8,6 +8,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
@@ -32,14 +33,13 @@ public class BaseActivity extends AppCompatActivity {
 
         View toolbar = findViewById(R.id.toolbar);
         if (toolbar != null) {
-            // Fix padding of content below the toolbar
-            ViewCompat.setOnApplyWindowInsetsListener(toolbar, (view, insets) -> {
-                int topInset = insets.getInsets(WindowInsetsCompat.Type.statusBars() |
-                        WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout()).top;
-                if (topInset > 0)
-                    view.setPadding(0, topInset, 0, 0); // Shift the toolbar down if needed
+            // Fix padding of content below the toolbar, respecting AAOS display insets
+            ViewCompat.setOnApplyWindowInsetsListener(toolbar, (view, windowInsets) -> {
+                Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() |
+                        WindowInsetsCompat.Type.displayCutout());
+                view.setPadding(insets.left, insets.top, insets.right, 0);
 
-                return insets;
+                return windowInsets;
             });
         }
     }

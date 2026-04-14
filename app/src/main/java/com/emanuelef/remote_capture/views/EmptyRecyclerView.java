@@ -156,7 +156,7 @@ public class EmptyRecyclerView extends RecyclerView {
             ViewCompat.setOnApplyWindowInsetsListener(view, (v, windowInsets) -> {
                 Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() |
                         WindowInsetsCompat.Type.displayCutout());
-                v.setPadding(0, insets.top, 0, 0);
+                v.setPadding(insets.left, insets.top, insets.right, insets.bottom);
 
                 return windowInsets;
             });
