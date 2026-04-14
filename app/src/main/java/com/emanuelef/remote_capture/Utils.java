@@ -1933,7 +1933,7 @@ public class Utils {
         ViewCompat.setOnApplyWindowInsetsListener(lv, (v, windowInsets) -> {
             var insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() |
                     WindowInsetsCompat.Type.displayCutout());
-            v.setPadding(0, 0, 0, insets.bottom);
+            v.setPadding(insets.left, 0, insets.right, insets.bottom);
 
             return WindowInsetsCompat.CONSUMED;
         });

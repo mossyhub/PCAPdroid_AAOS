@@ -16,9 +16,12 @@
     <!-- Required with root to properly resolve UIDs cross-users/profiles. Granted via root -->
     <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS" android:protectionLevel="signature"  tools:ignore="ProtectedPermissions" />
 
+    <uses-feature android:name="android.hardware.type.automotive" android:required="true" />
     <uses-feature android:name="android.software.leanback" android:required="false" />
     <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
     <uses-feature android:name="android.hardware.wifi" android:required="false" />
+    <uses-feature android:name="android.hardware.screen.portrait" android:required="false" />
+    <uses-feature android:name="android.hardware.screen.landscape" android:required="false" />
 
     <application
         android:name=".PCAPdroid"
@@ -32,6 +35,10 @@
         tools:replace="android:label"
         android:localeConfig="@xml/locales_config"
         tools:targetApi="tiramisu">
+
+        <meta-data
+            android:name="com.android.automotive"
+            android:resource="@xml/automotive_app_desc" />
 
         <activity
             android:name=".activities.MainActivity"

@@ -124,7 +124,7 @@ public class ConnectionPayload extends Fragment implements PayloadHostActivity.C
         ViewCompat.setOnApplyWindowInsetsListener(mRecyclerView, (v, windowInsets) -> {
             Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() |
                     WindowInsetsCompat.Type.displayCutout());
-            v.setPadding(0, 0, 0, insets.bottom);
+            v.setPadding(insets.left, 0, insets.right, insets.bottom);
 
             return WindowInsetsCompat.CONSUMED;
         });
